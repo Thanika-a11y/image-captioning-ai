@@ -1,255 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>🧠 Ultimate AI Image Caption Generator</title>
+<title>AI Image Captioning</title>
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-
-    min-height:100vh;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    padding:30px;
-
-    overflow:auto;
-
-    background:
-    linear-gradient(
-    135deg,
-    #020617,
-    #0f172a,
-    #1e3a8a,
-    #312e81,
-    #111827
-    );
-
+background:linear-gradient(135deg,#141e30,#243b55);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+color:white;
 }
 
 .container{
-
-    width:95%;
-    max-width:850px;
-
-    padding:40px;
-
-    border-radius:35px;
-
-    background:rgba(255,255,255,0.08);
-
-    backdrop-filter:blur(25px);
-
-    border:1px solid rgba(255,255,255,0.15);
-
-    box-shadow:
-    0 0 30px rgba(0,255,255,0.4),
-    0 0 80px rgba(59,130,246,0.4);
-
-    text-align:center;
-
-    animation:glow 4s infinite alternate;
-
-}
-
-@keyframes glow{
-
-    from{
-
-        box-shadow:
-        0 0 25px cyan,
-        0 0 60px cyan;
-
-    }
-
-    to{
-
-        box-shadow:
-        0 0 40px #3b82f6,
-        0 0 90px #3b82f6;
-
-    }
-
+width:90%;
+max-width:700px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(12px);
+padding:30px;
+border-radius:25px;
+box-shadow:0 0 30px rgba(0,255,255,0.4);
+text-align:center;
+animation:fadeIn 1s ease;
 }
 
 h1{
-
-    color:white;
-
-    font-size:52px;
-
-    margin-bottom:15px;
-
-    text-shadow:
-    0 0 10px cyan,
-    0 0 30px cyan;
-
+font-size:3rem;
+margin-bottom:15px;
+color:#00ffff;
+text-shadow:0 0 15px #00ffff;
 }
 
-.subtitle{
-
-    color:#e2e8f0;
-
-    font-size:22px;
-
-    margin-bottom:35px;
-
+p{
+margin-bottom:20px;
+font-size:1.1rem;
+opacity:0.9;
 }
 
 .upload-box{
-
-    border:3px dashed rgba(255,255,255,0.3);
-
-    border-radius:25px;
-
-    padding:40px;
-
-    cursor:pointer;
-
-    transition:0.4s;
-
-    background:rgba(255,255,255,0.05);
-
+border:2px dashed #00ffff;
+padding:25px;
+border-radius:20px;
+cursor:pointer;
+transition:0.3s;
+margin-bottom:20px;
 }
 
 .upload-box:hover{
-
-    transform:scale(1.03);
-
-    box-shadow:
-    0 0 20px cyan,
-    0 0 40px cyan;
-
+background:rgba(0,255,255,0.1);
 }
 
 input{
-    display:none;
-}
-
-.upload-text{
-
-    color:white;
-
-    font-size:28px;
-
-    font-weight:bold;
-
+display:none;
 }
 
 img{
-
-    width:100%;
-
-    max-height:250px;
-
-    object-fit:contain;
-
-    margin-top:30px;
-
-    border-radius:25px;
-
-    display:none;
-
-    background:white;
-
-    padding:10px;
-
+max-width:100%;
+max-height:350px;
+margin-top:20px;
+border-radius:20px;
+display:none;
+box-shadow:0 0 20px rgba(255,255,255,0.2);
 }
 
-.generate-btn{
-
-    margin-top:35px;
-
-    padding:18px 40px;
-
-    border:none;
-
-    border-radius:18px;
-
-    font-size:22px;
-
-    font-weight:bold;
-
-    color:white;
-
-    cursor:pointer;
-
-    transition:0.4s;
-
-    background:
-    linear-gradient(
-    45deg,
-    #06b6d4,
-    #2563eb,
-    #7c3aed
-    );
-
-    box-shadow:
-    0 0 20px cyan;
-
+button{
+margin-top:20px;
+padding:15px 35px;
+border:none;
+border-radius:15px;
+background:#00ffff;
+color:black;
+font-size:1rem;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
 }
 
-.generate-btn:hover{
-
-    transform:scale(1.08);
-
-    box-shadow:
-    0 0 30px cyan,
-    0 0 60px cyan;
-
+button:hover{
+transform:scale(1.05);
+background:white;
 }
 
 .caption-box{
-
-    margin-top:35px;
-
-    padding:30px;
-
-    border-radius:25px;
-
-    background:rgba(255,255,255,0.08);
-
-    color:white;
-
-    font-size:26px;
-
-    line-height:1.7;
-
-    min-height:150px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    text-align:center;
-
-    box-shadow:
-    0 0 15px rgba(255,255,255,0.15);
-
+margin-top:25px;
+padding:20px;
+border-radius:15px;
+background:rgba(255,255,255,0.1);
+font-size:1.2rem;
+line-height:1.6;
+display:none;
+animation:fadeIn 0.8s ease;
 }
 
-.footer{
+.loader{
+display:none;
+margin-top:20px;
+font-size:18px;
+color:#00ffff;
+}
 
-    margin-top:25px;
-
-    color:#cbd5e1;
-
-    font-size:16px;
-
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 </style>
@@ -260,217 +130,122 @@ img{
 
 <div class="container">
 
-    <h1>🧠 AI Image Captioning</h1>
+<h1>🧠 AI Image Captioning</h1>
 
-    <p class="subtitle">
-        Upload any image and generate intelligent AI captions ✨
-    </p>
+<p>Upload any image and get smart AI-generated captions instantly ✨</p>
 
-    <label class="upload-box">
+<label class="upload-box">
+📤 Click To Upload Image
+<input type="file" id="imageInput" accept="image/*">
+</label>
 
-        <input type="file" id="imageInput" accept="image/*">
+<img id="preview">
 
-        <div class="upload-text">
-            📤 Click to Upload Any Image
-        </div>
+<br>
 
-    </label>
+<button onclick="generateCaption()">Generate Caption</button>
 
-    <img id="preview">
+<div class="loader" id="loader">
+⚡ AI is analyzing image...
+</div>
 
-    <button class="generate-btn" onclick="generateCaption()">
-        🚀 Generate AI Caption
-    </button>
-
-    <div class="caption-box" id="caption">
-
-        AI-generated caption will appear here...
-
-    </div>
-
-    <div class="footer">
-        Developed using HTML, CSS & JavaScript ❤️
-    </div>
+<div class="caption-box" id="captionBox"></div>
 
 </div>
 
 <script>
 
-const imageInput =
-document.getElementById("imageInput");
+const imageInput = document.getElementById("imageInput");
+const preview = document.getElementById("preview");
 
-const preview =
-document.getElementById("preview");
+let selectedImage = null;
 
-const captionBox =
-document.getElementById("caption");
+imageInput.addEventListener("change",(e)=>{
 
-let uploadedFileName = "";
+selectedImage = e.target.files[0];
 
-imageInput.addEventListener("change", function(){
+if(selectedImage){
 
-    const file = this.files[0];
+preview.src = URL.createObjectURL(selectedImage);
+preview.style.display = "block";
 
-    if(file){
-
-        uploadedFileName = file.name.toLowerCase();
-
-        const reader = new FileReader();
-
-        reader.onload = function(e){
-
-            preview.src = e.target.result;
-
-            preview.style.display = "block";
-
-        }
-
-        reader.readAsDataURL(file);
-
-    }
+}
 
 });
 
-function generateCaption(){
+async function generateCaption(){
 
-    if(preview.src === ""){
+if(!selectedImage){
 
-        captionBox.innerHTML =
-        "⚠️ Please upload an image first.";
+alert("Please upload image first!");
+return;
 
-        return;
+}
 
-    }
+const loader = document.getElementById("loader");
+const captionBox = document.getElementById("captionBox");
 
-    let caption = "";
+loader.style.display = "block";
+captionBox.style.display = "none";
 
-    if(
-        uploadedFileName.includes("dog") ||
-        uploadedFileName.includes("puppy")
-    ){
+const reader = new FileReader();
 
-        caption =
-        "🐶 A cute dog enjoying a playful moment.";
+reader.readAsDataURL(selectedImage);
 
-    }
+reader.onload = async ()=>{
 
-    else if(
-        uploadedFileName.includes("cat")
-    ){
+const base64Image = reader.result.split(",")[1];
 
-        caption =
-        "🐱 A beautiful cat relaxing peacefully.";
+try{
 
-    }
+const response = await fetch(
+"https://api-inference.huggingface.co/models/Salesforce/blip-image-captioning-base",
+{
+method:"POST",
+headers:{
+"Authorization":"Bearer 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",
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+inputs:base64Image
+})
+}
+);
 
-    else if(
-        uploadedFileName.includes("car")
-    ){
+const data = await response.json();
 
-        caption =
-        "🚗 A stylish modern vehicle captured beautifully.";
+loader.style.display = "none";
 
-    }
+captionBox.style.display = "block";
 
-    else if(
-        uploadedFileName.includes("food") ||
-        uploadedFileName.includes("pizza") ||
-        uploadedFileName.includes("burger")
-    ){
+if(data.error){
 
-        caption =
-        "🍕 Delicious food presented attractively.";
+captionBox.innerHTML = "❌ Error: " + data.error;
 
-    }
+}else{
 
-    else if(
-        uploadedFileName.includes("flower")
-    ){
+captionBox.innerHTML =
+"✨ <b>AI Caption:</b><br><br>" +
+data[0].generated_text;
 
-        caption =
-        "🌸 A colorful flower blooming naturally.";
+}
 
-    }
+}catch(error){
 
-    else if(
-        uploadedFileName.includes("sunset")
-    ){
+loader.style.display = "none";
 
-        caption =
-        "🌅 A breathtaking sunset with glowing skies.";
+captionBox.style.display = "block";
 
-    }
+captionBox.innerHTML =
+"❌ Something went wrong!";
 
-    else if(
-        uploadedFileName.includes("beach")
-    ){
+}
 
-        caption =
-        "🏖️ A relaxing beach scenery with ocean waves.";
-
-    }
-
-    else if(
-        uploadedFileName.includes("mountain")
-    ){
-
-        caption =
-        "⛰️ A majestic mountain landscape under the sky.";
-
-    }
-
-    else if(
-        uploadedFileName.includes("person") ||
-        uploadedFileName.includes("girl") ||
-        uploadedFileName.includes("boy")
-    ){
-
-        caption =
-        "😊 A person smiling confidently at the camera.";
-
-    }
-
-    else if(
-        uploadedFileName.includes("building")
-    ){
-
-        caption =
-        "🏢 An impressive architectural structure.";
-
-    }
-
-    else{
-
-        const captions = [
-
-            "🖼️ A visually appealing image with artistic composition.",
-
-            "🌄 A stunning scene captured beautifully.",
-
-            "📸 A high-quality photograph with rich details.",
-
-            "🤖 AI successfully analyzed the uploaded image.",
-
-            "✨ A creative image with vibrant visual elements.",
-
-            "🌍 An interesting real-world scene captured perfectly.",
-
-            "🎨 An aesthetic image with attractive colors."
-
-        ];
-
-        caption =
-        captions[Math.floor(Math.random() * captions.length)];
-
-    }
-
-    captionBox.innerHTML =
-    "🤖 " + caption;
+};
 
 }
 
 </script>
 
 </body>
-
 </html>
