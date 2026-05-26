@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>🧠 AI Image Caption Generator</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+
+      min-height:100vh;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      background:
+      linear-gradient(
+      135deg,
+      #0f172a,
+      #1e3a8a,
+      #312e81,
+      #111827
+      );
+
+      overflow:hidden;
+
+    }
+
+    .container{
+
+      width:90%;
+      max-width:700px;
+
+      padding:40px;
+
+      border-radius:30px;
+
+      background:rgba(255,255,255,0.08);
+
+      backdrop-filter:blur(20px);
+
+      border:1px solid rgba(255,255,255,0.15);
+
+      box-shadow:
+      0 0 25px rgba(0,255,255,0.4),
+      0 0 60px rgba(0,255,255,0.2);
+
+      text-align:center;
+
+      animation:glow 3s infinite alternate;
+
+    }
+
+    @keyframes glow{
+
+      from{
+
+        box-shadow:
+        0 0 20px cyan,
+        0 0 50px cyan;
+
+      }
+
+      to{
+
+        box-shadow:
+        0 0 35px #3b82f6,
+        0 0 70px #3b82f6;
+
+      }
+
+    }
+
+    h1{
+
+      color:white;
+
+      font-size:42px;
+
+      margin-bottom:15px;
+
+      text-shadow:
+      0 0 10px cyan,
+      0 0 20px cyan;
+
+    }
+
+    .subtitle{
+
+      color:#cbd5e1;
+
+      margin-bottom:30px;
+
+      font-size:18px;
+
+    }
+
+    .upload-box{
+
+      border:2px dashed rgba(255,255,255,0.3);
+
+      border-radius:20px;
+
+      padding:35px;
+
+      cursor:pointer;
+
+      transition:0.3s;
+
+      background:rgba(255,255,255,0.05);
+
+    }
+
+    .upload-box:hover{
+
+      transform:scale(1.03);
+
+      box-shadow:
+      0 0 15px cyan,
+      0 0 30px cyan;
+
+    }
+
+    input{
+      display:none;
+    }
+
+    .upload-text{
+
+      color:white;
+
+      font-size:20px;
+
+    }
+
+    img{
+
+      width:100%;
+
+      margin-top:25px;
+
+      border-radius:20px;
+
+      display:none;
+
+      box-shadow:
+      0 0 20px rgba(255,255,255,0.2);
+
+    }
+
+    .caption-box{
+
+      margin-top:30px;
+
+      padding:25px;
+
+      border-radius:20px;
+
+      background:rgba(255,255,255,0.08);
+
+      color:white;
+
+      font-size:22px;
+
+      line-height:1.6;
+
+      min-height:100px;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      box-shadow:
+      0 0 10px rgba(255,255,255,0.1);
+
+    }
+
+    .generate-btn{
+
+      margin-top:30px;
+
+      padding:15px 35px;
+
+      border:none;
+
+      border-radius:15px;
+
+      font-size:18px;
+
+      font-weight:bold;
+
+      background:
+      linear-gradient(
+      45deg,
+      #06b6d4,
+      #3b82f6
+      );
+
+      color:white;
+
+      cursor:pointer;
+
+      transition:0.3s;
+
+      box-shadow:
+      0 0 15px cyan;
+
+    }
+
+    .generate-btn:hover{
+
+      transform:scale(1.08);
+
+      box-shadow:
+      0 0 25px cyan,
+      0 0 50px cyan;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>🧠 AI Image Captioning</h1>
+
+  <p class="subtitle">
+    Upload an image and generate intelligent AI captions ✨
+  </p>
+
+  <label class="upload-box">
+
+    <input type="file" id="imageInput" accept="image/*">
+
+    <div class="upload-text">
+      📤 Click to Upload Image
+    </div>
+
+  </label>
+
+  <img id="preview">
+
+  <button class="generate-btn" onclick="generateCaption()">
+    🚀 Generate AI Caption
+  </button>
+
+  <div class="caption-box" id="caption">
+
+    AI caption will appear here...
+
+  </div>
+
+</div>
+
+<script>
+
+const imageInput =
+document.getElementById("imageInput");
+
+const preview =
+document.getElementById("preview");
+
+const captionBox =
+document.getElementById("caption");
+
+imageInput.addEventListener("change",function(){
+
+  const file = this.files[0];
+
+  if(file){
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+      preview.src = e.target.result;
+
+      preview.style.display = "block";
+
+    }
+
+    reader.readAsDataURL(file);
+
+  }
+
+});
+
+function generateCaption(){
+
+  if(preview.src === ""){
+
+    captionBox.innerHTML =
+    "⚠️ Please upload an image first.";
+
+    return;
+
+  }
+
+  const captions = [
+
+    "🌄 A beautiful scenery with vibrant colors.",
+
+    "🐶 A cute animal enjoying the outdoors.",
+
+    "🚗 A modern vehicle parked on the road.",
+
+    "👧 A person smiling happily at the camera.",
+
+    "🏞️ Nature view with stunning background.",
+
+    "🏙️ A futuristic city illuminated at night.",
+
+    "🍕 Delicious food served beautifully.",
+
+    "⚽ A player enjoying a sports activity.",
+
+    "🌅 Sunset view with glowing sky.",
+
+    "📸 A high-quality aesthetic photograph."
+
+  ];
+
+  const randomCaption =
+  captions[Math.floor(Math.random()*captions.length)];
+
+  captionBox.innerHTML =
+  "🤖 " + randomCaption;
+
+}
+
+</script>
+
+</body>
+
+</html>
