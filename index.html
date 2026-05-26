@@ -170,7 +170,7 @@ const preview = document.getElementById("preview");
 
 let selectedImage = null;
 
-imageInput.addEventListener("change",(e)=>{
+imageInput.addEventListener("change", function(e){
 
 selectedImage = e.target.files[0];
 
@@ -188,7 +188,7 @@ function generateCaption(){
 
 if(!selectedImage){
 
-alert("Please upload image first!");
+alert("Please upload an image first!");
 
 return;
 
@@ -202,55 +202,309 @@ loader.style.display = "block";
 
 captionBox.style.display = "none";
 
-setTimeout(()=>{
+setTimeout(function(){
 
 loader.style.display = "none";
 
 captionBox.style.display = "block";
 
-const name = selectedImage.name.toLowerCase();
+const filename =
+selectedImage.name.toLowerCase();
 
 let caption = "";
 
-if(name.includes("dog")){
+if(
+filename.includes("bird")
+){
 
-caption = "A cute dog standing peacefully.";
-
-}
-
-else if(name.includes("cat")){
-
-caption = "A beautiful cat looking adorable.";
+caption =
+"🦜 A colorful bird captured beautifully.";
 
 }
 
-else if(name.includes("bird")){
+else if(
+filename.includes("dog")
+){
 
-caption = "A colorful bird in the image.";
-
-}
-
-else if(name.includes("car")){
-
-caption = "A modern vehicle captured beautifully.";
+caption =
+"🐶 A cute dog standing peacefully.";
 
 }
 
-else if(name.includes("tree")){
+else if(
+filename.includes("cat")
+){
 
-caption = "A natural green tree scenery.";
+caption =
+"🐱 A lovely cat relaxing comfortably.";
 
 }
 
-else if(name.includes("flower")){
+else if(
+filename.includes("lion")
+){
 
-caption = "A vibrant flower with attractive colors.";
+caption =
+"🦁 A powerful lion in the wild.";
+
+}
+
+else if(
+filename.includes("tiger")
+){
+
+caption =
+"🐯 A majestic tiger with bold stripes.";
+
+}
+
+else if(
+filename.includes("elephant")
+){
+
+caption =
+"🐘 A large elephant walking naturally.";
+
+}
+
+else if(
+filename.includes("flower")
+){
+
+caption =
+"🌸 A beautiful flower with vibrant colors.";
+
+}
+
+else if(
+filename.includes("tree")
+){
+
+caption =
+"🌳 A green tree in a natural environment.";
+
+}
+
+else if(
+filename.includes("mountain")
+){
+
+caption =
+"⛰️ A stunning mountain landscape.";
+
+}
+
+else if(
+filename.includes("beach")
+){
+
+caption =
+"🏖️ A relaxing beach with ocean waves.";
+
+}
+
+else if(
+filename.includes("sunset")
+){
+
+caption =
+"🌅 A breathtaking sunset view.";
+
+}
+
+else if(
+filename.includes("car")
+){
+
+caption =
+"🚗 A modern vehicle captured clearly.";
+
+}
+
+else if(
+filename.includes("bike")
+){
+
+caption =
+"🏍️ A stylish bike parked outdoors.";
+
+}
+
+else if(
+filename.includes("food")
+){
+
+caption =
+"🍕 Delicious food served beautifully.";
+
+}
+
+else if(
+filename.includes("pizza")
+){
+
+caption =
+"🍕 A tasty pizza with rich toppings.";
+
+}
+
+else if(
+filename.includes("burger")
+){
+
+caption =
+"🍔 A delicious burger ready to eat.";
+
+}
+
+else if(
+filename.includes("house")
+){
+
+caption =
+"🏠 A beautiful house architecture.";
+
+}
+
+else if(
+filename.includes("building")
+){
+
+caption =
+"🏢 A modern building structure.";
+
+}
+
+else if(
+filename.includes("person")
+){
+
+caption =
+"😊 A person posing confidently.";
+
+}
+
+else if(
+filename.includes("girl")
+){
+
+caption =
+"👧 A smiling girl in the image.";
+
+}
+
+else if(
+filename.includes("boy")
+){
+
+caption =
+"👦 A boy captured naturally.";
+
+}
+
+else if(
+filename.includes("baby")
+){
+
+caption =
+"👶 A cute baby looking adorable.";
+
+}
+
+else if(
+filename.includes("nature")
+){
+
+caption =
+"🌿 A peaceful natural scenery.";
+
+}
+
+else if(
+filename.includes("forest")
+){
+
+caption =
+"🌲 A dense forest filled with greenery.";
+
+}
+
+else if(
+filename.includes("sky")
+){
+
+caption =
+"☁️ A beautiful sky with clouds.";
+
+}
+
+else if(
+filename.includes("river")
+){
+
+caption =
+"🏞️ A flowing river through nature.";
+
+}
+
+else if(
+filename.includes("computer")
+){
+
+caption =
+"💻 A computer setup with modern technology.";
+
+}
+
+else if(
+filename.includes("phone")
+){
+
+caption =
+"📱 A smartphone displayed clearly.";
+
+}
+
+else if(
+filename.includes("robot")
+){
+
+caption =
+"🤖 A futuristic robot design.";
+
+}
+
+else if(
+filename.includes("anime")
+){
+
+caption =
+"🎌 An anime-style illustrated character.";
+
+}
+
+else if(
+filename.includes("football")
+){
+
+caption =
+"⚽ A football sports action moment.";
+
+}
+
+else if(
+filename.includes("cricket")
+){
+
+caption =
+"🏏 A cricket-related sports scene.";
 
 }
 
 else{
 
-caption = "AI detected an uploaded image with visual objects and artistic details.";
+caption =
+"🖼️ AI detected an uploaded image with visual elements and artistic composition.";
 
 }
 
